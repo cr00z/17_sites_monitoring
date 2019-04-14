@@ -13,7 +13,12 @@ def get_cmdline_args():
         'urls_file_path',
         help='path for file with urls'
     )
-    parser.add_argument('--limit', type=int, default=31, help='checking period')
+    parser.add_argument(
+        '--limit',
+        type=int,
+        default=31,
+        help='checking period in days'
+    )
     return parser.parse_args()
 
 
