@@ -4,11 +4,14 @@ Site availability and domain expirity checker.
 
 Script gets list of urls from file and outputs status of each url:
 
-* *unknown* if site not registered
-* *ok* if site returns '200 OK' status 
+* *ok* if site returns 200 - 399 status 
 * *error* if site returns any another status
 
-Also script checks 'Expiration Date' and print yes if domain expires during 1 month, , otherwise it prints "no".
+Also script checks 'Expiration Date' and print:
+ 
+* *yes* if domain expires during 1 month
+* *no* otherwise 
+* *unknown* if site not registered or whois service answers incorrectly
 
 # How to Install
 
@@ -30,11 +33,11 @@ Example of script launch on Linux, Python 3.5:
 
 $ python check_sites_health.py urls.txt
 URL                         STATUS EXPIRE
-http://newrobinson111.ru    unknown
-htt://lihe.ru               error  no
-http://bitcoinme.ru         ok     no
-http://bookday.ru           ok     yes
-...[skipped]...
+http://epic-game.ru         ok     yes
+http://gamepath.ru          ok     no
+http://flappybird-online.ru ok     no
+http://modtruck123456.ru    error  unknown
+http://gamescity.ru         ok     no
 
 ```
 
