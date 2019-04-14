@@ -53,7 +53,10 @@ def get_domains_info(urls4check):
 
 
 def print_domains_info(domains_info, limit):
-    url_max_len = len(max([d['url'] for d in domains_info], key=len))
+    url_max_len = len(max(
+        [domain_info['url'] for domain_info in domains_info],
+        key=len
+    ))
     print('{} STATUS EXPIRE'.format('URL'.ljust(url_max_len)))
     for domain_info in domains_info:
         if domain_info['expdate'] is None:
