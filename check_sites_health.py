@@ -52,11 +52,15 @@ def get_domains_info(urls4check):
         for checked_url in urls4check]
 
 
-def get_days_remaining(expdate):
+def get_domain_days_remaining(expdate):
     if isinstance(expdate, datetime.datetime):
         return (expdate - datetime.datetime.now()).days
     else:
         return None
+
+
+def is_domain_expired(days_remaining, limit):
+    return days_remaining <= limit
 
 
 def print_domains_info(domains_info, limit):
@@ -66,9 +70,12 @@ def print_domains_info(domains_info, limit):
     ))
     print('{} STATUS EXPIRE'.format('URL'.ljust(url_max_len)))
     for domain_info in domains_info:
-        days_remaining = get_days_remaining(domain_info['expdate'])
+        days_remaining = get_domain_days_remaining(domain_info['expdate'])
         if days_remaining is not None:
-            days_remaining_message = 'yes' if days_remaining <= limit else 'no'
+            if is_domain_expired(days_remaining, limit):
+                days_remaining_message = 'yes'
+            else:
+                days_remaining_message = 'no'
         else:
             days_remaining_message = 'unknown'
         print('{} {} {}'.format(
